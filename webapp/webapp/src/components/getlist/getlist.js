@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./getlist.css";
-import Delete from '../delete/delete'
 
 export default class getlist extends Component {
   constructor(props) {
@@ -8,6 +7,7 @@ export default class getlist extends Component {
     this.state = {
       list: [],
     };
+    this.Delete = this.Delete.bind(this)
   }
 
   componentDidMount() {
@@ -25,20 +25,38 @@ export default class getlist extends Component {
         });
       });
   }
-
+  Delete() {
+    fetch("/delete", {
+      method: "POST",
+      mode: "cors",
+      body: {
+        "index": 1,
+      },
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        this.setState({
+          list: response,
+        });
+      });
+  }
   render() {
     console.log(this.state.list);
     const SimpleList = () => (
       <ul>
-        {this.state.list?.map((item) => {
-          return <div><li key={item}>
-              Name : {item.name} -  
-              Price : {item.price} - 
-              Rating : {item.rating} - 
-              Warranty Years : {item.warranty_years}
+        {this.state.list?.map((item , index) => {
+          return (
+            <div>
+              <li key={item}>
+                Name : {item.name} - Price : {item.price} - Rating :{" "}
+                {item.rating} - Warranty Years : {item.warranty_years}
               </li>
-              <Delete/>
-              </div>;
+              <button onClick={this.Delete}>DELETE</button>
+            </div>
+          );
         })}
       </ul>
     );

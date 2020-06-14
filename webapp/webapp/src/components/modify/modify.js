@@ -6,7 +6,7 @@ import "./modify.css";
 
 const modify = props => ( 
 
-<button>modify</button>
+<button>{props.buttontitle}</button>
 
 );
 

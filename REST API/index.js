@@ -9,13 +9,6 @@ app.use(bodyparser.urlencoded({ extended: false }));
 const json_file = fs.readFileSync("Products.json");
 const json_file_traduit = JSON.parse(json_file);
 
-io.on('connection', (client) => {
-  // here you can start emitting events to the client 
-});
-
-const port = 8080;
-io.listen(port);
-console.log('listening on port ', port);
 
 function GETList() {
   let lecture = fs.readFileSync("Products.json");
@@ -70,7 +63,7 @@ function deleteDATA() {
   app.post("/delete", function (req, res) {
     let suppr = req.body.index;
     delete json_file_traduit[suppr];
-    res.send("delete confirmed");
+    res.send(json_file_traduit);
     console.log(json_file_traduit);
   });
 }

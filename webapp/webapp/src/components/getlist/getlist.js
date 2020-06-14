@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./getlist.css";
-import axios from "axios";
+import Delete from '../delete/delete'
 
 export default class getlist extends Component {
   constructor(props) {
@@ -31,7 +31,14 @@ export default class getlist extends Component {
     const SimpleList = () => (
       <ul>
         {this.state.list?.map((item) => {
-          return <li key={item}>{item}</li>;
+          return <div><li key={item}>
+              Name : {item.name} -  
+              Price : {item.price} - 
+              Rating : {item.rating} - 
+              Warranty Years : {item.warranty_years}
+              </li>
+              <Delete/>
+              </div>;
         })}
       </ul>
     );

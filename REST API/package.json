@@ -1,6 +1,9 @@
 {
-    "name":"restapi",
-    "version" : "1.0.0",
+    "name": "restapi",
+    "version": "1.0.0",
     "description": "api rest that modifies the package",
-    "main":"index.js"
+    "main": "index.js",
+    "dependencies": {
+        "socket.io": "^2.3.0"
+    }
 }

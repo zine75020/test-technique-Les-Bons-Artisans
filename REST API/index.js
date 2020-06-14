@@ -1,12 +1,21 @@
 const express = require("express");
 const app = express();
 const fs = require("fs");
+const io = require('socket.io')();
 const bodyparser = require("body-parser");
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 
 const json_file = fs.readFileSync("Products.json");
 const json_file_traduit = JSON.parse(json_file);
+
+io.on('connection', (client) => {
+  // here you can start emitting events to the client 
+});
+
+const port = 8080;
+io.listen(port);
+console.log('listening on port ', port);
 
 function GETList() {
   let lecture = fs.readFileSync("Products.json");
@@ -61,7 +70,7 @@ function deleteDATA() {
   app.post("/delete", function (req, res) {
     let suppr = req.body.index;
     delete json_file_traduit[suppr];
-    res.send("POST request ça bien");
+    res.send("delete confirmed");
     console.log(json_file_traduit);
   });
 }

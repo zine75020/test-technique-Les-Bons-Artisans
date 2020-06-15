@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import "./getlist.css";
+import ReactDOM from 'react-dom';
+
+
+
 
 export default class getlist extends Component {
   constructor(props) {
@@ -9,6 +13,7 @@ export default class getlist extends Component {
     };
     this.Delete = this.Delete.bind(this)
   }
+  
 
   componentDidMount() {
     fetch("/getlist", {
@@ -25,7 +30,7 @@ export default class getlist extends Component {
         });
       });
   }
-  Delete() {
+  Delete(index) {
     fetch("/delete", {
       method: "POST",
       mode: "cors",
@@ -43,37 +48,35 @@ export default class getlist extends Component {
         });
       });
   }
-  render() {
-    console.log(this.state.list);
+ 
+  render() { 
+    
+    
     const SimpleList = () => (
       <ul>
-        {this.state.list?.map((item , index) => {
+        
+        {this.state.list?.map((item , indeX) => {
           return (
             <div>
               <li key={item}>
                 Name : {item.name} - Price : {item.price} - Rating :{" "}
                 {item.rating} - Warranty Years : {item.warranty_years}
               </li>
-              <button onClick={this.Delete}>DELETE</button>
+              <button onClick={this.Delete(indeX)}>DELETE :</button>
             </div>
           );
-        })}
+        })
+        }
       </ul>
     );
 
+    
+
     return (
-      <div>
-        <div>
-          <SimpleList />
-        </div>
+     
+      <div className="list">
+            <SimpleList/>
       </div>
     );
   }
 }
-
-// in h1 (at getlist.js:26)
-// in div (at getlist.js:24)
-// in getlist (at App.js:22)
-// in div (at App.js:20)
-// in App (at src/index.js:9)
-// in StrictMode (at src/index.js:8)

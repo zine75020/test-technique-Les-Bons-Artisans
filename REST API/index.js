@@ -54,7 +54,7 @@ function modifyDATA() {
       default:
         console.log("frero euh");
     }
-    res.send("POST request to the homepage");
+    res.send("POST request to the homepage",json_file_traduit);
     console.log("--------------------------", "TABLO", json_file_traduit);
   });
 }
@@ -75,27 +75,27 @@ function getDATA() {
     switch (propertyWanted) {
       case "_id":
         console.log(json_file_traduit[indexFinal]._id);
-        res.send("POST request ça bien");
+        res.send("POST request ça bien",json_file_traduit[indexFinal]._id);
         break;
       case "name":
         console.log(json_file_traduit[indexFinal].name);
-        res.send("POST request ça bien");
+        res.send("POST request ça bien",json_file_traduit[indexFinal].name);
         break;
       case "type":
         console.log(json_file_traduit[indexFinal].type);
-        res.send("POST request ça bien");
+        res.send("POST request ça bien",json_file_traduit[indexFinal].type);
         break;
       case "rating":
         console.log(json_file_traduit[indexFinal].rating);
-        res.send("POST request ça bien");
+        res.send("POST request ça bien",json_file_traduit[indexFinal].rating);
         break;
       case "warranty_years":
         console.log(json_file_traduit[indexFinal].warranty_years);
-        res.send("POST request ça bien");
+        res.send("POST request ça bien",json_file_traduit[indexFinal].warranty_years);
         break;
       case "available":
         console.log(json_file_traduit[indexFinal].available);
-        res.send("POST request ça bien");
+        res.send("POST request ça bien",json_file_traduit[indexFinal].available);
         break;
       default:
         console.log("frero euh");
